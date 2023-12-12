@@ -43,5 +43,22 @@ describe('es6', () => {
             // TODO
             assert.strictEqual(!!dic, true);
         });
+    
+        it('возвращаем true при успешном добавлении пары', () => {
+            const dictionary = new core.Dictionary();
+            assert.strictEqual(dictionary.set('sun', 'солнце'), true);
+        });
+
+        it('новый словарь пуст', () => {
+            const dictionary = new core.Dictionary();
+            assert.strictEqual(dictionary.get('anyKey'), undefined);
+        });
+
+        it('повторное добавление значения с тем же ключом обновляет значение', () => {
+            const dictionary = new core.Dictionary();
+            dictionary.set('key', 'firstValue');
+            dictionary.set('key', 'secondValue');
+            assert.strictEqual(dictionary.get('key'), 'secondValue');
+        });
     });
 });
